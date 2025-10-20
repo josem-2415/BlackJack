@@ -34,7 +34,7 @@ private:
     double monto; // Monto apostado
 
 public:
-    Apuesta(double m = 0.0) : monto(m) {}
+    Apuesta(double m);
     void registrarApuesta(double m);           // Registra la apuesta
     int calcularGanancia(string resultado);    // Calcula ganancia según resultado
     void reiniciar();                          // Reinicia el monto

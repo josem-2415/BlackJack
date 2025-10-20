@@ -47,6 +47,6 @@ public:
     bool tieneBlackjack() const;           // Determina si tiene 21 con 2 cartas
     void realizarApuesta(double monto);    // Registra una nueva apuesta
     void actualizarSaldo(string resultado, double monto); // Ajusta saldo tras partida
-    double getSaldo() const { return saldoActual; }
+    double getSaldo() const; // Devuelve el saldo actual
 };
 #endif // JUGADOR_H

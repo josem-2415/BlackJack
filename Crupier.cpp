@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 
+// Metodos
 void Crupier::repartirInicial(Jugador& jugador, Mazo& mazo){
     // Repartir dos cartas al jugador
     jugador.pedirCarta(mazo);

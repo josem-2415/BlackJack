@@ -4,7 +4,7 @@
 using namespace std;
 
 // Constructor
-Apuesta::Apuesta(double m = 0.0) : monto(m) {}
+Apuesta::Apuesta(double m) : monto(0.0) {}
 
 // Metodos
 void Apuesta::registrarApuesta(double m){ // Registra la apuesta
@@ -12,7 +12,14 @@ void Apuesta::registrarApuesta(double m){ // Registra la apuesta
 }
 
 int Apuesta::calcularGanancia(string resultado){ // Calcula ganancia según resultado
-
+    if (resultado == "gana") {
+        return static_cast<int>(monto); // Gana el monto apostado
+    } else if (resultado == "empata") {
+        return 0; // No gana ni pierde
+    } else if (resultado == "pierde") {
+        return -static_cast<int>(monto); // Pierde el monto apostado
+    }
+    return 0; // En caso de resultado desconocido
 }
 
 void Apuesta::reiniciar(){ // Reinicia el monto

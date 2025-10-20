@@ -4,8 +4,10 @@
 #include <algorithm>
 #include <random>
 
+// Constructor
 Mazo::Mazo(){}
 
+// Metodos
 void Mazo::barajar(){
     random_device rd;   // obtiene una semilla aleatoria del sistema
     mt19937 g(rd());    // generador Mersenne Twister 
@@ -29,6 +31,6 @@ Carta Mazo::repartirCarta(){
     return cartaSuperior;
 }
 
-int Mazo::cartasRestantes()const{
+void Mazo::cartasRestantes()const{
     std::cout << "Cartas restantes: " << cartas.size() << endl;
 }

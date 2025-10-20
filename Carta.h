@@ -32,7 +32,7 @@ private:
     string palo;       // Palo: corazones, tréboles, diamantes o picas
 
 public:
-    Carta(string v = 0, string p = "") : valor(v), palo(p) {}
+    Carta(string v, string p);
     string getValor() const;    // Devuelve el valor de la carta
     string getPalo()const;
     void mostrarCarta() const; // Muestra el valor y palo
