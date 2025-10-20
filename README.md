@@ -61,7 +61,9 @@ Luego ejecuta el programa:
 6. Gana quien esté más cerca de 21 sin pasarse.
 7. Si el jugador gana, su saldo aumenta según su apuesta. Si pierde, se descuenta.
 
-## Autor
+## Autores
 
-Proyecto desarrollado por **José Manuel Cardona Gil, Nerie Vasquez Dias, Andres Reodriguez**
-Universidad del Valle — 2025
+**Nombres:** Jose Cardona, Nerie Vasquez, Sebastian Valencia, Andres Rodriguez
+**Curso:** Fundamentos de Programación Orientada a Objetos
+**Institución:** Universidad del Valle
+**Año:** 2025
