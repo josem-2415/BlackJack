@@ -19,7 +19,7 @@ void Crupier::preguntarCarta(Jugador& jugador, Mazo& mazo){
     }
 }
 
-int calcularValorManoCrupier()const{
+int Crupier::calcularValorManoCrupier()const{
     int valorTotal = 0;
     int numAses = 0;
 

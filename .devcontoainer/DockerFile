@@ -1,0 +1,51 @@
+# Use Ubuntu 22.04 base
+FROM ubuntu:22.04
+
+ARG USER=dev
+ARG UID=1000
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Prepara el sistema e instala herramientas necesarias (incluye cmake para compilar gtest)
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    gdb \
+    gdbserver \
+    ninja-build \
+    clang \
+    lldb \
+    valgrind \
+    make \
+    sudo \
+    ca-certificates \
+    openssh-client \
+    procps \
+    libcurl4-openssl-dev \
+    nlohmann-json3-dev \
+    libgtest-dev \
+ && rm -rf /var/lib/apt/lists/*
+
+# Compila e instala GoogleTest (libgtest-dev provee código fuente en /usr/src/gtest)
+RUN if [ -d /usr/src/googletest ] ; then \
+      cd /usr/src/googletest && cmake . && make && cp -a lib/*.a /usr/lib/ || true ; \
+    elif [ -d /usr/src/gtest ] ; then \
+      cd /usr/src/gtest && cmake . && make && cp -a lib/*.a /usr/lib/ || true ; \
+    fi
+
+# Crear usuario no-root con UID (usado por devcontainer.json)
+RUN useradd -m -u ${UID} ${USER} \
+ && echo "${USER} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER} \
+ && chmod 0440 /etc/sudoers.d/${USER}
+
+# Directorio de trabajo como el workspace esperado por devcontainer.json
+WORKDIR /workspace
+
+# Cambiar a usuario no-root
+USER ${USER}
+
+EXPOSE 2345
+
+# Mantener el contenedor en ejecución (VS Code lo usará)
+ENTRYPOINT ["tail", "-f", "/dev/null"]
