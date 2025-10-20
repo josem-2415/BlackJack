@@ -26,6 +26,7 @@ Creadores:
 #ifndef APUESTA_H
 #define APUESTA_H
 #include <string>
+
 using namespace std;
 
 class Apuesta {
@@ -37,6 +38,6 @@ public:
     void registrarApuesta(double m);           // Registra la apuesta
     int calcularGanancia(string resultado);    // Calcula ganancia según resultado
     void reiniciar();                          // Reinicia el monto
-    double getMonto() const { return monto; }  // Devuelve el monto actual
+    double getMonto() const;  // Devuelve el monto actual
 };
 #endif
