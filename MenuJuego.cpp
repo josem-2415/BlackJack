@@ -20,15 +20,15 @@ string MenuJuego::determinarGanador(Jugador& jugador, Crupier& crupier, double m
 
     if ((valorJugador > valorCrupier && valorJugador <= 21) ||
         (valorCrupier > 21 && valorJugador <= 21)) {
-        cout << "\n🏆 ¡Ganaste $" << monto * 2 << "!" << endl;
+        cout << "\n¡Ganaste $" << monto * 2 << "!" << endl;
         return "gana";
     } 
     else if (valorJugador == valorCrupier) {
-        cout << "\n🤝 Empate. Recuperas tu apuesta." << endl;
+        cout << "\nEmpate. Recuperas tu apuesta." << endl;
         return "empate";
     } 
     else {
-        cout << "\n💀 Perdiste $" << monto << "." << endl;
+        cout << "\nPerdiste $" << monto << "." << endl;
         return "pierde";
     }
 }
