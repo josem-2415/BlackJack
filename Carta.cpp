@@ -2,8 +2,7 @@
 #include <iostream>
 
 // Constructor
-Carta::Carta(string v, string p): valor(0), palo(""){}
-
+Carta::Carta(const std::string& v, const std::string& p) : valor(v), palo(p) {}
 // Metodos
 void Carta::mostrarCarta()const{
     std::cout<<valor<<" de "<<palo<<std::endl;

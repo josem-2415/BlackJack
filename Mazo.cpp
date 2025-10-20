@@ -31,6 +31,6 @@ Carta Mazo::repartirCarta(){
     return cartaSuperior;
 }
 
-void Mazo::cartasRestantes()const{
-    std::cout << "Cartas restantes: " << cartas.size() << endl;
+int Mazo::cartasRestantes() const {
+    return static_cast<int>(cartas.size());
 }

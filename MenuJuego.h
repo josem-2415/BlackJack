@@ -42,6 +42,7 @@ private:
     Apuesta apuestaActual;// Apuesta en curso
 
 public:
+    MenuJuego();
     void iniciar();                            // Inicia el juego
     void determinarGanador();                  // Determina el resultado
     void manejarApuesta(Jugador& jugador, string resultado); // Gestiona apuestas

@@ -3,6 +3,9 @@
 
 using namespace std;
 
+// Constructor
+MenuJuego::MenuJuego() : jugador(), crupier(), mazo(), apuestaActual(0.0){}
+
 // Metodos
 void MenuJuego::iniciar(){
     // Lógica para iniciar el juego

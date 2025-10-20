@@ -4,7 +4,7 @@
 using namespace std;
 
 // Constructor
-Jugador::Jugador(double saldo): saldoActual(saldo) {}
+Jugador::Jugador(double saldo) : saldoActual(saldo), apuestaActual(0.0) {}
 
 // Metodos
 void Jugador::pedirCarta(Mazo& mazo){
