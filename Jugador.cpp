@@ -53,7 +53,12 @@ void Jugador::realizarApuesta(double monto){
     apuestaActual.registrarApuesta(monto);
 }
 
-void Jugador::actualizarSaldo(string resultado, double monto){
+void Jugador::actualizarSaldo(const std::string& resultado, double monto) {
+    if (resultado == "apostar") {
+        saldoActual -= monto;
+        return;
+    }
+
     int ganancia = apuestaActual.calcularGanancia(resultado);
     saldoActual += ganancia;
     apuestaActual.reiniciar();

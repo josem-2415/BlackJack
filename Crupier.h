@@ -37,10 +37,13 @@ private:
     vector<Carta> mano; // Cartas del crupier
     
 public:
+    // Metodos
     void repartirInicial(Jugador& jugador, Mazo& mazo); // Da dos cartas al jugador
     void preguntarCarta(Jugador& jugador, Mazo& mazo);              // Pregunta si quiere más
     int calcularValorManoCrupier() const;               // Valor total de la mano
-    void limpiarMano();
+    void mostrarPrimeraCarta();                     // Muestra la primera carta del crupier
+    void pedirCarta(Mazo &mazo);                     // Toma una carta del mazo
+    void limpiarMano();                         // Limpia la mano del crupier
     void mostrarMano() const;                           // Muestra cartas del crupier
 };
 #endif // CRUPIER_H

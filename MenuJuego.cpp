@@ -14,26 +14,22 @@ void MenuJuego::iniciar(){
     crupier.repartirInicial(jugador, mazo);
 }
 
-void MenuJuego::determinarGanador(){
-    // Lógica para determinar el ganador
+string MenuJuego::determinarGanador(Jugador& jugador, Crupier& crupier, double monto) {
     int valorJugador = jugador.calcularValorManoJugador();
     int valorCrupier = crupier.calcularValorManoCrupier();
 
-    cout << "Valor del Jugador: " << valorJugador << endl;
-    cout << "Valor del Crupier: " << valorCrupier << endl;
-
-    if (valorJugador > 21) {
-        cout << "El Jugador se ha pasado. Gana el Crupier." << endl;
-        manejarApuesta(jugador, "pierde");
-    } else if (valorCrupier > 21 || valorJugador > valorCrupier) {
-        cout << "El Jugador gana!" << endl;
-        manejarApuesta(jugador, "gana");
-    } else if (valorJugador < valorCrupier) {
-        cout << "El Crupier gana!" << endl;
-        manejarApuesta(jugador, "pierde");
-    } else {
-        cout << "Empate!" << endl;
-        manejarApuesta(jugador, "empata");
+    if ((valorJugador > valorCrupier && valorJugador <= 21) ||
+        (valorCrupier > 21 && valorJugador <= 21)) {
+        cout << "\n🏆 ¡Ganaste $" << monto * 2 << "!" << endl;
+        return "gana";
+    } 
+    else if (valorJugador == valorCrupier) {
+        cout << "\n🤝 Empate. Recuperas tu apuesta." << endl;
+        return "empate";
+    } 
+    else {
+        cout << "\n💀 Perdiste $" << monto << "." << endl;
+        return "pierde";
     }
 }
 

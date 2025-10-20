@@ -50,6 +50,16 @@ void Crupier::limpiarMano(){
     mano.clear();
 }
 
+void Crupier::mostrarPrimeraCarta() {
+    if (!mano.empty()) {
+        cout << mano[0].getValor() << " de " << mano[0].getPalo() << endl;
+    }
+}
+
+void Crupier::pedirCarta(Mazo &mazo) {
+    mano.push_back(mazo.repartirCarta());
+}
+
 void Crupier::mostrarMano()const{
     std::cout << "Mano del Crupier:" << std::endl;
     for (const auto& carta : mano) {

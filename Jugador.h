@@ -40,15 +40,20 @@ private:
     Apuesta apuestaActual;  // Apuesta actual del jugador
     
 public:
+    // Constructor
     Jugador(double saldo = 1000.0);
+
+    // Metodos
     void pedirCarta(Mazo& mazo);           // Toma una carta del mazo
     void mostrarMano() const;              // Muestra todas las cartas
     int calcularValorManoJugador() const;  // Suma de valores de la mano
     bool tieneBlackjack() const;           // Determina si tiene 21 con 2 cartas
     void realizarApuesta(double monto);    // Registra una nueva apuesta
-    void actualizarSaldo(string resultado, double monto); // Ajusta saldo tras partida
-    double getSaldo() const; // Devuelve el saldo actual
+    void actualizarSaldo(const std::string& resultado, double monto); // Ajusta saldo tras partida
     void limpiarMano();          // Limpia la mano del jugador
+
+    // Getter
+    double getSaldo() const; // Devuelve el saldo actual
 
 };
 #endif // JUGADOR_H

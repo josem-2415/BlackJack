@@ -32,9 +32,14 @@ private:
     string palo;
 
 public:
+    // Constructor
     Carta(const std::string& v = "", const std::string& p = "");
+
+    // Metodo
+    void mostrarCarta() const;
+
+    // Getters
     string getValor() const;
     string getPalo() const;
-    void mostrarCarta() const;
 };
 #endif // CARTA_H

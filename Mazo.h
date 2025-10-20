@@ -34,7 +34,10 @@ private:
     vector<Carta> cartas; // Vector de cartas en el mazo
 
 public:
+    // Constructor
     Mazo();
+    
+    // Metodos
     void barajar();             // Mezcla las cartas
     Carta repartirCarta();      // Devuelve y elimina la carta superior
     void inicializarMazo();

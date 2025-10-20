@@ -33,11 +33,16 @@ private:
     double monto;
 
 public:
+    // Constructores
     Apuesta();                 // ctor por defecto
     Apuesta(double m);         // ctor con monto
+
+    // Metodos
     void registrarApuesta(double m);
     int calcularGanancia(string resultado);
     void reiniciar();
+
+    // Getter
     double getMonto() const;
 };
 #endif // APUESTA_H

@@ -42,9 +42,12 @@ private:
     Apuesta apuestaActual;// Apuesta en curso
 
 public:
+    // Constructor
     MenuJuego();
+
+    // Metodos
     void iniciar();                            // Inicia el juego
-    void determinarGanador();                  // Determina el resultado
+    string determinarGanador(Jugador& jugador, Crupier& crupier, double monto); // Determina el resultado
     void manejarApuesta(Jugador& jugador, string resultado); // Gestiona apuestas
     void nuevaPartida();                       // Reinicia el juego
 };
