@@ -24,18 +24,17 @@ Creadores:
 #ifndef CARTA_H
 #define CARTA_H
 #include <string>
+using namespace std;
 
 class Carta {
 private:
-    std::string valor;         // Valor nominal de la carta A(as), J, K, Q, (2-10)
-    std::string palo;       // Palo: corazones, tréboles, diamantes o picas
+    string valor;
+    string palo;
 
 public:
-    Carta(const std::string& v, const std::string& p);
-
-    void mostrarCarta() const; // Muestra el valor y palo
-
-    std::string getValor() const;    // Devuelve el valor de la carta
-    std::string getPalo()const;
+    Carta(const std::string& v = "", const std::string& p = "");
+    string getValor() const;
+    string getPalo() const;
+    void mostrarCarta() const;
 };
 #endif // CARTA_H

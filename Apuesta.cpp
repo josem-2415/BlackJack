@@ -1,32 +1,18 @@
 #include "Apuesta.h"
 #include <string>
 
-// Constructor
-Apuesta::Apuesta(double m) : monto(m) {}
+using namespace std;
 
 Apuesta::Apuesta() : monto(0.0) {}
-// Metodos
-void Apuesta::registrarApuesta(double m){ // Registra la apuesta
-    monto = m;
+Apuesta::Apuesta(double m) : monto(m) {}
+
+void Apuesta::registrarApuesta(double m) { monto = m; }
+
+int Apuesta::calcularGanancia(string resultado) {
+    // implementar lógica y devolver int (o double si quieres)
+    return 0; // placeholder
 }
 
-int Apuesta::calcularGanancia(std::string resultado){ // Calcula ganancia según resultado
-    if (resultado == "gana") {
-        return static_cast<int>(monto); // Gana el monto apostado
-    } else if (resultado == "empata") {
-        return 0; // No gana ni pierde
-    } else if (resultado == "pierde") {
-        return -static_cast<int>(monto); // Pierde el monto apostado
-    }
-    return 0; // En caso de resultado desconocido
-}
+void Apuesta::reiniciar() { monto = 0.0; }
 
-void Apuesta::reiniciar(){ // Reinicia el monto
-    monto = 0.0;
-}
-
-//Getter
-double Apuesta::getMonto() const { // Devuelve el monto actual
-    return monto; 
-} 
-
+double Apuesta::getMonto() const { return monto; }

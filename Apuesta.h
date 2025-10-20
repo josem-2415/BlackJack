@@ -26,17 +26,18 @@ Creadores:
 #ifndef APUESTA_H
 #define APUESTA_H
 #include <string>
+using namespace std;
 
 class Apuesta {
 private:
-    double monto; // Monto apostado
+    double monto;
 
 public:
-    Apuesta(double m);
-    Apuesta();
-    void registrarApuesta(double m);           // Registra la apuesta
-    int calcularGanancia(std::string resultado);    // Calcula ganancia según resultado
-    void reiniciar();                          // Reinicia el monto
-    double getMonto() const;  // Devuelve el monto actual
+    Apuesta();                 // ctor por defecto
+    Apuesta(double m);         // ctor con monto
+    void registrarApuesta(double m);
+    int calcularGanancia(string resultado);
+    void reiniciar();
+    double getMonto() const;
 };
-#endif
+#endif // APUESTA_H
