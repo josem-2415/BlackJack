@@ -37,6 +37,7 @@ public:
     Mazo();
     void barajar();             // Mezcla las cartas
     Carta repartirCarta();      // Devuelve y elimina la carta superior
+    void inicializarMazo();
     int cartasRestantes() const; // Devuelve el número de cartas restantes
 };
 #endif // MAZO_H

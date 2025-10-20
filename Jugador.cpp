@@ -59,6 +59,10 @@ void Jugador::actualizarSaldo(string resultado, double monto){
     apuestaActual.reiniciar();
 }
 
+void Jugador::limpiarMano() {
+    mano.clear();  // elimina todas las cartas del vector
+}
+
 // Getter
 double Jugador::getSaldo() const {
     return saldoActual;

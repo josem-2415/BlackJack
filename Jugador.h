@@ -48,5 +48,7 @@ public:
     void realizarApuesta(double monto);    // Registra una nueva apuesta
     void actualizarSaldo(string resultado, double monto); // Ajusta saldo tras partida
     double getSaldo() const; // Devuelve el saldo actual
+    void limpiarMano();          // Limpia la mano del jugador
+
 };
 #endif // JUGADOR_H

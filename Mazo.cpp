@@ -14,21 +14,32 @@ void Mazo::barajar(){
     shuffle(cartas.begin(), cartas.end(), g);
 }
 
-Carta Mazo::repartirCarta(){
-
-    //Verficar que el vector de cartas no este vacio
+Carta Mazo::repartirCarta() {
     if (cartas.empty()) {
-        throw std::out_of_range("No quedan cartas en el mazo");
+        std::cout << "Se reinicia el mazo." << std::endl;
+        inicializarMazo(); // <-- ahora sí existe
+    }
+    Carta carta = cartas.back();
+    cartas.pop_back();
+    return carta;
+}
+
+void Mazo::inicializarMazo() {
+    cartas.clear(); // Limpiamos por si ya tenía cartas
+
+    vector<string> palos = {"Corazones", "Diamantes", "Tréboles", "Picas"};
+    vector<string> valores = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+
+    for (const auto& palo : palos) {
+        for (const auto& valor : valores) {
+            cartas.emplace_back(valor, palo);
+        }
     }
 
-    // Tomar la última carta del vector
-    Carta cartaSuperior = cartas.back();
-
-    // Eliminarla del mazo
-    cartas.pop_back();
-
-    // Devolver la carta
-    return cartaSuperior;
+    // Barajamos el mazo
+    random_device rd;
+    mt19937 g(rd());
+    shuffle(cartas.begin(), cartas.end(), g);
 }
 
 int Mazo::cartasRestantes() const {

@@ -40,6 +40,7 @@ public:
     void repartirInicial(Jugador& jugador, Mazo& mazo); // Da dos cartas al jugador
     void preguntarCarta(Jugador& jugador, Mazo& mazo);              // Pregunta si quiere más
     int calcularValorManoCrupier() const;               // Valor total de la mano
+    void limpiarMano();
     void mostrarMano() const;                           // Muestra cartas del crupier
 };
 #endif // CRUPIER_H

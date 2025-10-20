@@ -46,6 +46,10 @@ int Crupier::calcularValorManoCrupier()const{
     return valorTotal;
 }
 
+void Crupier::limpiarMano(){
+    mano.clear();
+}
+
 void Crupier::mostrarMano()const{
     std::cout << "Mano del Crupier:" << std::endl;
     for (const auto& carta : mano) {
