@@ -28,12 +28,13 @@ using namespace std;
 
 class Carta {
 private:
-    int valor;         // Valor nominal de la carta (1-11)
+    string valor;         // Valor nominal de la carta A(as), J, K, Q, (2-10)
     string palo;       // Palo: corazones, tréboles, diamantes o picas
 
 public:
-    Carta(int v = 0, string p = "") : valor(v), palo(p) {}
-    int getValor() const;    // Devuelve el valor de la carta
+    Carta(string v = 0, string p = "") : valor(v), palo(p) {}
+    string getValor() const;    // Devuelve el valor de la carta
+    string getPalo()const;
     void mostrarCarta() const; // Muestra el valor y palo
 };
 #endif // CARTA_H
