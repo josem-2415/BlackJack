@@ -1,0 +1,38 @@
+```gitignore
+# Archivos de compilación
+*.exe
+*.out
+*.o
+*.obj
+
+# Carpetas de build
+/build/
+bin/
+debug/
+release/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de entorno o configuración local
+*.log
+*.tmp
+
+# Archivos creados por IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+*.userossc
+*.ncb
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+
+# Copias comprimidas o de respaldo
+*.zip
+*.rar
+*.7z
+*.bak
