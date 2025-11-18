@@ -25,7 +25,6 @@ int main() {
         cout << "\nTu saldo actual es: $" << jugador.getSaldo() << endl;
         cout << "Ingresa el monto que deseas apostar: $";
         cin >> monto;
-
         while (monto > jugador.getSaldo() || monto <= 0) {
             cout << "Monto invalido. Ingresa una cantidad menor o igual a tu saldo actual: $";
             cin >> monto;
@@ -34,20 +33,21 @@ int main() {
         jugador.realizarApuesta(monto);
         jugador.actualizarSaldo("apostar", monto); // Se descuenta el monto al apostar
         cout << "Saldo restante despues de apostar: $" << jugador.getSaldo() << endl;
+        cout << "=======================================\n\n";
 
         // Repartir cartas iniciales
-        jugador.pedirCarta(mazo);
-        jugador.pedirCarta(mazo);
+        crupier.repartirInicial(jugador, mazo); // carta oculta
 
-        crupier.pedirCarta(mazo); // carta visible
-        crupier.pedirCarta(mazo); // carta oculta
-
-        cout << "\nTus cartas:" << endl;
+        cout << "======================================="<< endl;
+        cout << "Tus cartas:" << endl;
         jugador.mostrarMano();
         cout << "Valor total: " << jugador.calcularValorManoJugador() << endl;
+        cout << "=======================================\n\n";
 
-        cout << "\nCarta visible del crupier:" << endl;
+        cout << "======================================="<< endl;
+        cout << "Carta visible del crupier:" << endl;
         crupier.mostrarPrimeraCarta();
+        cout << "=======================================\n";
 
         // Verificar si el jugador se pasa de 21
         if (jugador.calcularValorManoJugador() > 21) {
@@ -62,13 +62,17 @@ int main() {
 
                 if (decision == 's' || decision == 'S') {
                     jugador.pedirCarta(mazo);
-                    cout << "\nTu nueva mano:" << endl;
+                    cout << "======================================="<< endl;
+                    cout << "Tu nueva mano:" << endl;
                     jugador.mostrarMano();
-                    cout << "Valor total: " << jugador.calcularValorManoJugador() << endl;
+                    cout << "=== Valor total: " << jugador.calcularValorManoJugador() << " ===" << endl;
+                    cout << "=======================================\n";
                 }
 
                 if (jugador.calcularValorManoJugador() > 21) {
+                    cout << "\n----------------------------------------" << endl;
                     cout << "Te pasaste de 21. Perdiste." << endl;
+                    cout << "----------------------------------------\n";
                     jugador.actualizarSaldo("pierde", monto);
                     break;
                 }
@@ -76,15 +80,17 @@ int main() {
 
             // Turno del crupier (solo si el jugador no se pasó)
             if (jugador.calcularValorManoJugador() <= 21) {
-                cout << "\nTurno del crupier..." << endl;
-
+                cout << "\n---------------------------------------" << endl;
+                cout << "Turno del crupier..." << endl;
+                cout << "---------------------------------------\n";
                 // El crupier pide cartas hasta tener al menos 17
                 while (crupier.calcularValorManoCrupier() < 17) {
                     crupier.pedirCarta(mazo);
                 }
-
-                cout << "\nMano completa del crupier:" << endl;
+                cout << "\n======================================="<< endl;
+                cout << "Mano completa del crupier:" << endl;
                 crupier.mostrarMano();
+                cout << "======================================="<< endl;
 
                 // Determinar ganador con el método del menú
                 string resultado = menu.determinarGanador(jugador, crupier, monto);
@@ -92,10 +98,10 @@ int main() {
             }
         }
 
-        cout << "\nTu saldo actual: $" << jugador.getSaldo() << endl;
+        cout << "\n=== Tu saldo actual: $" << jugador.getSaldo() << " ===" << endl;
 
         if (jugador.getSaldo() <= 0) {
-            cout << "\nTe has quedado sin dinero. Fin del juego.\n";
+            cout << "\n\nTe has quedado sin dinero. Fin del juego.\n";
             break;
         }
 

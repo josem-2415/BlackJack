@@ -61,7 +61,6 @@ void Crupier::pedirCarta(Mazo &mazo) {
 }
 
 void Crupier::mostrarMano()const{
-    std::cout << "Mano del Crupier:" << std::endl;
     for (const auto& carta : mano) {
         carta.mostrarCarta();
     }

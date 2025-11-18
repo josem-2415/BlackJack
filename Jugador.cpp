@@ -13,7 +13,6 @@ void Jugador::pedirCarta(Mazo& mazo){
 }
 
 void Jugador::mostrarMano()const{
-    cout << "Mano del Jugador:" << endl;
     for (const auto& carta : mano) {
         carta.mostrarCarta();
     }
