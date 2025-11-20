@@ -4,19 +4,20 @@
 using namespace std;
 
 // Constructor
-MenuJuego::MenuJuego() : jugador(), crupier(), mazo(), apuestaActual(0.0){}
+MenuJuego::MenuJuego(Jugador& j, Crupier& c, Mazo& m)
+    : jugador(j), crupier(c), mazo(m) {}
 
 // Metodos
-void MenuJuego::iniciar(){
+void MenuJuego::iniciar(Crupier& crupier, Jugador& jugador){
     // Lógica para iniciar el juego
     cout << "Iniciando el juego de Blackjack..." << endl;
     mazo.barajar();
-    crupier.repartirInicial(jugador, mazo);
+    crupier.repartirInicial(mazo, jugador);
 }
 
 string MenuJuego::determinarGanador(Jugador& jugador, Crupier& crupier, double monto) {
-    int valorJugador = jugador.calcularValorManoJugador();
-    int valorCrupier = crupier.calcularValorManoCrupier();
+    int valorJugador = jugador.calcularValorMano();
+    int valorCrupier = crupier.calcularValorMano();
 
     if ((valorJugador > valorCrupier && valorJugador <= 21) ||
         (valorCrupier > 21 && valorJugador <= 21)) {
@@ -47,9 +48,9 @@ void MenuJuego::manejarApuesta(Jugador& jugador, string resultado){
 void MenuJuego::nuevaPartida(){
     // Lógica para reiniciar el juego
     cout << "Reiniciando el juego para una nueva partida..." << endl;
-    jugador = Jugador(); // Reiniciar jugador
-    crupier = Crupier(); // Reiniciar crupier
+    jugador = Jugador();        //Reinicuar jugador
+    crupier = Crupier();        //Reiniciar crupier  
     mazo = Mazo();       // Reiniciar mazo
     apuestaActual.reiniciar(); // Reiniciar apuesta
-    iniciar();           // Iniciar nueva partida
+    iniciar(crupier, jugador);           // Iniciar nueva partida
 }

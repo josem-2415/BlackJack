@@ -29,13 +29,12 @@ Creadores:
 #define JUGADOR_H
 #include <vector>
 #include "Carta.h"
-#include "Mazo.h"
 #include "Apuesta.h"
+#include "Participante.h"
 using namespace std;
 
-class Jugador {
+class Jugador : public Participante{
 private:
-    vector<Carta> mano;     // Cartas del jugador
     double saldoActual;     // Dinero disponible
     Apuesta apuestaActual;  // Apuesta actual del jugador
     
@@ -44,13 +43,9 @@ public:
     Jugador(double saldo = 1000.0);
 
     // Metodos
-    void pedirCarta(Mazo& mazo);           // Toma una carta del mazo
-    void mostrarMano() const;              // Muestra todas las cartas
-    int calcularValorManoJugador() const;  // Suma de valores de la mano
     bool tieneBlackjack() const;           // Determina si tiene 21 con 2 cartas
     void realizarApuesta(double monto);    // Registra una nueva apuesta
     void actualizarSaldo(const std::string& resultado, double monto); // Ajusta saldo tras partida
-    void limpiarMano();          // Limpia la mano del jugador
 
     // Getter
     double getSaldo() const; // Devuelve el saldo actual

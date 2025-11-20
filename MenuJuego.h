@@ -30,8 +30,10 @@ Creadores:
 #define MENUJUEGO_H
 #include "Jugador.h"
 #include "Crupier.h"
+#include "Participante.h"
 #include "Mazo.h"
 #include "Apuesta.h"
+
 using namespace std;
 
 class MenuJuego {
@@ -43,10 +45,10 @@ private:
 
 public:
     // Constructor
-    MenuJuego();
+    MenuJuego(Jugador& j, Crupier& c, Mazo& m);
 
     // Metodos
-    void iniciar();                            // Inicia el juego
+    void iniciar(Crupier& crupier, Jugador& jugador);                            // Inicia el juego
     string determinarGanador(Jugador& jugador, Crupier& crupier, double monto); // Determina el resultado
     void manejarApuesta(Jugador& jugador, string resultado); // Gestiona apuestas
     void nuevaPartida();                       // Reinicia el juego

@@ -30,20 +30,16 @@ Creadores:
 #include "Carta.h"
 #include "Mazo.h"
 #include "Jugador.h"
+#include "Participante.h"
 using namespace std;
 
-class Crupier {
-private:
-    vector<Carta> mano; // Cartas del crupier
-    
+class Crupier : public Participante {
 public:
     // Metodos
-    void repartirInicial(Jugador& jugador, Mazo& mazo); // Da dos cartas al jugador
-    void preguntarCarta(Jugador& jugador, Mazo& mazo);              // Pregunta si quiere más
-    int calcularValorManoCrupier() const;               // Valor total de la mano
+    Crupier();
+
+    void preguntarCarta(Mazo& mazo);              // Pregunta si quiere más
     void mostrarPrimeraCarta();                     // Muestra la primera carta del crupier
-    void pedirCarta(Mazo &mazo);                     // Toma una carta del mazo
-    void limpiarMano();                         // Limpia la mano del crupier
-    void mostrarMano() const;                           // Muestra cartas del crupier
+    void repartirInicial(Mazo& mazo, Jugador& jugador);                   // Reparte las cartas a crupier y jugador
 };
 #endif // CRUPIER_H

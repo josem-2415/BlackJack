@@ -2,8 +2,23 @@
 #include <vector>
 #include <iostream>
 
+Crupier::Crupier(){}
+
 // Metodos
-void Crupier::repartirInicial(Jugador& jugador, Mazo& mazo){
+void Crupier::preguntarCarta(Mazo& mazo){
+    // Lógica para que el crupier tome cartas según las reglas del juego
+    while (calcularValorMano() < 17) {
+        mano.push_back(mazo.repartirCarta());
+    }
+}
+
+void Crupier::mostrarPrimeraCarta() {
+    if (!mano.empty()) {
+        cout << mano[0].getValor() << " de " << mano[0].getPalo() << endl;
+    }
+}
+
+void Crupier::repartirInicial(Mazo& mazo, Jugador& jugador){
     // Repartir dos cartas al jugador
     jugador.pedirCarta(mazo);
     jugador.pedirCarta(mazo);
@@ -13,55 +28,3 @@ void Crupier::repartirInicial(Jugador& jugador, Mazo& mazo){
     mano.push_back(mazo.repartirCarta());
 }
 
-void Crupier::preguntarCarta(Jugador& jugador, Mazo& mazo){
-    // Lógica para que el crupier tome cartas según las reglas del juego
-    while (calcularValorManoCrupier() < 17) {
-        mano.push_back(mazo.repartirCarta());
-    }
-}
-
-int Crupier::calcularValorManoCrupier()const{
-    int valorTotal = 0;
-    int numAses = 0;
-
-    for (const auto& carta : mano) {
-        std::string valorCarta = carta.getValor();
-
-        if (valorCarta == "A") {
-            valorTotal += 11; // As vale 11 inicialmente
-            numAses++;
-        } else if (valorCarta == "K" || valorCarta == "Q" || valorCarta == "J") {
-            valorTotal += 10; // Figuras valen 10
-        } else {
-            valorTotal += std::stoi(valorCarta); // Cartas numéricas
-        }
-    }
-
-    // Ajustar el valor de los Ases si el total excede 21
-    while (valorTotal > 21 && numAses > 0) {
-        valorTotal -= 10; // Convertir un As de 11 a 1
-        numAses--;
-    }
-
-    return valorTotal;
-}
-
-void Crupier::limpiarMano(){
-    mano.clear();
-}
-
-void Crupier::mostrarPrimeraCarta() {
-    if (!mano.empty()) {
-        cout << mano[0].getValor() << " de " << mano[0].getPalo() << endl;
-    }
-}
-
-void Crupier::pedirCarta(Mazo &mazo) {
-    mano.push_back(mazo.repartirCarta());
-}
-
-void Crupier::mostrarMano()const{
-    for (const auto& carta : mano) {
-        carta.mostrarCarta();
-    }
-}

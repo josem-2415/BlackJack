@@ -9,7 +9,7 @@ int main() {
     Jugador jugador;
     Crupier crupier;
     Mazo mazo;
-    MenuJuego menu;
+    MenuJuego menu(jugador, crupier, mazo);
     char opcion;
 
     do {
@@ -36,12 +36,12 @@ int main() {
         cout << "=======================================\n\n";
 
         // Repartir cartas iniciales
-        crupier.repartirInicial(jugador, mazo); // carta oculta
+        menu.iniciar(crupier, jugador);
 
-        cout << "======================================="<< endl;
+        cout << "\n======================================="<< endl;
         cout << "Tus cartas:" << endl;
         jugador.mostrarMano();
-        cout << "Valor total: " << jugador.calcularValorManoJugador() << endl;
+        cout << "== Valor total: " << jugador.calcularValorMano() << " =="<< endl;
         cout << "=======================================\n\n";
 
         cout << "======================================="<< endl;
@@ -50,9 +50,15 @@ int main() {
         cout << "=======================================\n";
 
         // Verificar si el jugador se pasa de 21
-        if (jugador.calcularValorManoJugador() > 21) {
+        if (jugador.calcularValorMano() > 21) {
+
             cout << "\nTe pasaste de 21. Perdiste automaticamente.\n";
             jugador.actualizarSaldo("pierde", monto);
+        } else if(jugador.tieneBlackjack()) {
+            cout << "\n----------------------------------------" << endl;            
+            cout << "¡Tienes BlackJack! Ganaste automaticamente." << endl;
+            cout << "----------------------------------------\n";
+            jugador.actualizarSaldo("gana", monto);
         } else {
             // Turno del jugador
             char decision;
@@ -65,26 +71,31 @@ int main() {
                     cout << "======================================="<< endl;
                     cout << "Tu nueva mano:" << endl;
                     jugador.mostrarMano();
-                    cout << "=== Valor total: " << jugador.calcularValorManoJugador() << " ===" << endl;
+                    cout << "=== Valor total: " << jugador.calcularValorMano() << " ===" << endl;
                     cout << "=======================================\n";
                 }
 
-                if (jugador.calcularValorManoJugador() > 21) {
+                if (jugador.calcularValorMano() > 21) {
                     cout << "\n----------------------------------------" << endl;
                     cout << "Te pasaste de 21. Perdiste." << endl;
                     cout << "----------------------------------------\n";
                     jugador.actualizarSaldo("pierde", monto);
                     break;
+                } else if (jugador.tieneBlackjack()){
+                    cout << "\n----------------------------------------" << endl;
+                    cout << "¡Tienes 21! Ganaste." << endl;
+                    cout << "----------------------------------------\n";
+                    jugador.actualizarSaldo("gana", monto);
                 }
             } while (decision == 's' || decision == 'S');
 
             // Turno del crupier (solo si el jugador no se pasó)
-            if (jugador.calcularValorManoJugador() <= 21) {
+            if (jugador.calcularValorMano() <= 21) {
                 cout << "\n---------------------------------------" << endl;
                 cout << "Turno del crupier..." << endl;
                 cout << "---------------------------------------\n";
                 // El crupier pide cartas hasta tener al menos 17
-                while (crupier.calcularValorManoCrupier() < 17) {
+                while (crupier.calcularValorMano() < 17) {
                     crupier.pedirCarta(mazo);
                 }
                 cout << "\n======================================="<< endl;
