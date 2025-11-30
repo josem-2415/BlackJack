@@ -1,21 +1,21 @@
-#include "MenuJuego.h"
+#include "Controlador.h"
 #include <iostream>
 
 using namespace std;
 
 // Constructor
-MenuJuego::MenuJuego(Jugador& j, Crupier& c, Mazo& m)
+Controlador::Controlador(Jugador& j, Crupier& c, Mazo& m)
     : jugador(j), crupier(c), mazo(m) {}
 
 // Metodos
-void MenuJuego::iniciar(Crupier& crupier, Jugador& jugador){
+void Controlador::iniciar(Crupier& crupier, Jugador& jugador){
     // Lógica para iniciar el juego
     cout << "Iniciando el juego de Blackjack..." << endl;
     mazo.barajar();
     crupier.repartirInicial(mazo, jugador);
 }
 
-string MenuJuego::determinarGanador(Jugador& jugador, Crupier& crupier, double monto) {
+string Controlador::determinarGanador(Jugador& jugador, Crupier& crupier, double monto) {
     int valorJugador = jugador.calcularValorMano();
     int valorCrupier = crupier.calcularValorMano();
 
@@ -40,12 +40,12 @@ string MenuJuego::determinarGanador(Jugador& jugador, Crupier& crupier, double m
     }
 }
 
-void MenuJuego::manejarApuesta(Jugador& jugador, string resultado){
+void Controlador::manejarApuesta(Jugador& jugador, string resultado){
     // Lógica para manejar la apuesta según el resultado
     jugador.actualizarSaldo(resultado, apuestaActual.getMonto());
 }
 
-void MenuJuego::nuevaPartida(){
+/*void Controlador::nuevaPartida(){
     // Lógica para reiniciar el juego
     cout << "Reiniciando el juego para una nueva partida..." << endl;
     jugador = Jugador();        //Reinicuar jugador
@@ -53,4 +53,4 @@ void MenuJuego::nuevaPartida(){
     mazo = Mazo();       // Reiniciar mazo
     apuestaActual.reiniciar(); // Reiniciar apuesta
     iniciar(crupier, jugador);           // Iniciar nueva partida
-}
+}*/

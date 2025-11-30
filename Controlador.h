@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-                                CRC - MenuJuego
+                                CRC - Controlador
 ===============================================================================
 
 Clase:
@@ -36,7 +36,7 @@ Creadores:
 
 using namespace std;
 
-class MenuJuego {
+class Controlador {
 private:
     Jugador jugador;      // Jugador principal
     Crupier crupier;      // Crupier del juego
@@ -45,7 +45,7 @@ private:
 
 public:
     // Constructor
-    MenuJuego(Jugador& j, Crupier& c, Mazo& m);
+    Controlador(Jugador& j, Crupier& c, Mazo& m);
 
     // Metodos
     void iniciar(Crupier& crupier, Jugador& jugador);                            // Inicia el juego

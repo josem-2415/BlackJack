@@ -2,14 +2,14 @@
 #include "Jugador.h"
 #include "Crupier.h"
 #include "Mazo.h"
-#include "MenuJuego.h"
+#include "Controlador.h"
 using namespace std;
 
 int main() {
     Jugador jugador;
     Crupier crupier;
     Mazo mazo;
-    MenuJuego menu(jugador, crupier, mazo);
+    Controlador controlador(jugador, crupier, mazo);
     char opcion;
 
     do {
@@ -36,7 +36,7 @@ int main() {
         cout << "=======================================\n\n";
 
         // Repartir cartas iniciales
-        menu.iniciar(crupier, jugador);
+        controlador.iniciar(crupier, jugador);
 
         cout << "\n======================================="<< endl;
         cout << "Tus cartas:" << endl;
@@ -53,12 +53,12 @@ int main() {
         if (jugador.calcularValorMano() > 21) {
 
             cout << "\nTe pasaste de 21. Perdiste automaticamente.\n";
-            jugador.actualizarSaldo("pierde", monto);
+            controlador.manejarApuesta(jugador, "pierde");
         } else if(jugador.tieneBlackjack()) {
             cout << "\n----------------------------------------" << endl;            
             cout << "¡Tienes BlackJack! Ganaste automaticamente." << endl;
             cout << "----------------------------------------\n";
-            jugador.actualizarSaldo("gana", monto);
+            controlador.manejarApuesta(jugador, "gana");
         } else {
             // Turno del jugador
             char decision;
@@ -79,13 +79,13 @@ int main() {
                     cout << "\n----------------------------------------" << endl;
                     cout << "Te pasaste de 21. Perdiste." << endl;
                     cout << "----------------------------------------\n";
-                    jugador.actualizarSaldo("pierde", monto);
+                    controlador.manejarApuesta(jugador, "pierde");
                     break;
                 } else if (jugador.tieneBlackjack()){
                     cout << "\n----------------------------------------" << endl;
                     cout << "¡Tienes 21! Ganaste." << endl;
                     cout << "----------------------------------------\n";
-                    jugador.actualizarSaldo("gana", monto);
+                    controlador.manejarApuesta(jugador, "gana");
                 }
             } while (decision == 's' || decision == 'S');
 
@@ -104,8 +104,8 @@ int main() {
                 cout << "======================================="<< endl;
 
                 // Determinar ganador con el método del menú
-                string resultado = menu.determinarGanador(jugador, crupier, monto);
-                jugador.actualizarSaldo(resultado, monto);
+                string resultado = controlador.determinarGanador(jugador, crupier, monto);
+                controlador.manejarApuesta(jugador, resultado);
             }
         }
 
