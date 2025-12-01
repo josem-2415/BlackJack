@@ -33,6 +33,7 @@ Creadores:
 #include "Participante.h"
 #include "Mazo.h"
 #include "Apuesta.h"
+#include "Vista.h"
 
 using namespace std;
 
@@ -42,6 +43,7 @@ private:
     Crupier crupier;      // Crupier del juego
     Mazo mazo;            // Mazo de cartas
     Apuesta apuestaActual;// Apuesta en curso
+    Vista vista;        // Interfaz de usuario
 
 public:
     // Constructor
@@ -51,6 +53,7 @@ public:
     void iniciar(Crupier& crupier, Jugador& jugador);                            // Inicia el juego
     string determinarGanador(Jugador& jugador, Crupier& crupier, double monto); // Determina el resultado
     void manejarApuesta(Jugador& jugador, string resultado); // Gestiona apuestas
-    void nuevaPartida();                       // Reinicia el juego
+
+    //void nuevaPartida();                       // Reinicia el juego
 };
 #endif // MENUJUEGO_H

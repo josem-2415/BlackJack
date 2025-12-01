@@ -1,4 +1,5 @@
 #include "Participante.h"
+#include <iostream>
 
 Participante::Participante(){}
 
@@ -33,12 +34,14 @@ void Participante::pedirCarta(Mazo& mazo) {
     mano.push_back(nuevaCarta);
 }
 
-void Participante::mostrarMano()const{
-    for (const auto& carta : mano) {
-        carta.mostrarCarta();
-    }
-}
-
 void Participante::limpiarMano() {
     mano.clear();  // elimina todas las cartas del vector
+}
+
+void Participante::mostrarMano() const {
+    for (const auto& carta : mano) {
+        carta.mostrarCarta();
+        cout << " ";
+    }
+    cout << std::endl;
 }

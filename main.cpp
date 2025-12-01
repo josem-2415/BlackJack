@@ -3,6 +3,8 @@
 #include "Crupier.h"
 #include "Mazo.h"
 #include "Controlador.h"
+#include "Vista.h"
+#include "VistaJugador.h"
 using namespace std;
 
 int main() {
@@ -10,98 +12,63 @@ int main() {
     Crupier crupier;
     Mazo mazo;
     Controlador controlador(jugador, crupier, mazo);
+    Vista vista;
+    VistaJugador vistaJugador;
+
     char opcion;
 
     do {
-        cout << "=========================================\n";
-        cout << "           Bienvenido al Blackjack       \n";
-        cout << "=========================================\n";
+        // Iniciar el juego
 
-        mazo.inicializarMazo();
-        jugador.limpiarMano();
-        crupier.limpiarMano();
-
-        double monto;
-        cout << "\nTu saldo actual es: $" << jugador.getSaldo() << endl;
-        cout << "Ingresa el monto que deseas apostar: $";
-        cin >> monto;
-        while (monto > jugador.getSaldo() || monto <= 0) {
-            cout << "Monto invalido. Ingresa una cantidad menor o igual a tu saldo actual: $";
-            cin >> monto;
-        }
-
-        jugador.realizarApuesta(monto);
-        jugador.actualizarSaldo("apostar", monto); // Se descuenta el monto al apostar
-        cout << "Saldo restante despues de apostar: $" << jugador.getSaldo() << endl;
-        cout << "=======================================\n\n";
-
-        // Repartir cartas iniciales
         controlador.iniciar(crupier, jugador);
 
-        cout << "\n======================================="<< endl;
-        cout << "Tus cartas:" << endl;
-        jugador.mostrarMano();
-        cout << "== Valor total: " << jugador.calcularValorMano() << " =="<< endl;
-        cout << "=======================================\n\n";
+        // Solicitar apuesta al jugador
+        double monto = vistaJugador.solicitarMontoApuesta(jugador.getSaldo(), jugador);
+        vistaJugador.mostrarSaldo(jugador.getSaldo() - monto);
 
-        cout << "======================================="<< endl;
-        cout << "Carta visible del crupier:" << endl;
-        crupier.mostrarPrimeraCarta();
-        cout << "=======================================\n";
+        // Mostrar manos iniciales
+        vistaJugador.mostrarManoJugador(jugador);
+        vistaJugador.mostrarManoCrupier(crupier);
 
         // Verificar si el jugador se pasa de 21
         if (jugador.calcularValorMano() > 21) {
-
-            cout << "\nTe pasaste de 21. Perdiste automaticamente.\n";
+            vista.mostrarResultado("pierde", monto, jugador.calcularValorMano());
             controlador.manejarApuesta(jugador, "pierde");
+
         } else if(jugador.tieneBlackjack()) {
-            cout << "\n----------------------------------------" << endl;            
-            cout << "¡Tienes BlackJack! Ganaste automaticamente." << endl;
-            cout << "----------------------------------------\n";
+            vista.mostrarResultado("gana", monto, jugador.calcularValorMano());
             controlador.manejarApuesta(jugador, "gana");
+
         } else {
             // Turno del jugador
             char decision;
             do {
-                cout << "\n¿Deseas pedir otra carta? (s/n): ";
-                cin >> decision;
-
+                decision = vistaJugador.confirmarNuevaCarta();
                 if (decision == 's' || decision == 'S') {
                     jugador.pedirCarta(mazo);
-                    cout << "======================================="<< endl;
-                    cout << "Tu nueva mano:" << endl;
-                    jugador.mostrarMano();
-                    cout << "=== Valor total: " << jugador.calcularValorMano() << " ===" << endl;
-                    cout << "=======================================\n";
+                    vistaJugador.mostrarManoJugador(jugador);
                 }
 
                 if (jugador.calcularValorMano() > 21) {
-                    cout << "\n----------------------------------------" << endl;
-                    cout << "Te pasaste de 21. Perdiste." << endl;
-                    cout << "----------------------------------------\n";
+                    vista.mostrarResultado("pierde", monto, jugador.calcularValorMano());
                     controlador.manejarApuesta(jugador, "pierde");
                     break;
-                } else if (jugador.tieneBlackjack()){
-                    cout << "\n----------------------------------------" << endl;
-                    cout << "¡Tienes 21! Ganaste." << endl;
-                    cout << "----------------------------------------\n";
+                } else if (jugador.calcularValorMano() == 21) {
+                    vista.mostrarResultado("gana", monto, jugador.calcularValorMano());
                     controlador.manejarApuesta(jugador, "gana");
                 }
+
             } while (decision == 's' || decision == 'S');
 
             // Turno del crupier (solo si el jugador no se pasó)
             if (jugador.calcularValorMano() <= 21) {
-                cout << "\n---------------------------------------" << endl;
-                cout << "Turno del crupier..." << endl;
-                cout << "---------------------------------------\n";
+                vista.tunroCrupier();
                 // El crupier pide cartas hasta tener al menos 17
                 while (crupier.calcularValorMano() < 17) {
                     crupier.pedirCarta(mazo);
                 }
-                cout << "\n======================================="<< endl;
-                cout << "Mano completa del crupier:" << endl;
-                crupier.mostrarMano();
-                cout << "======================================="<< endl;
+
+                vistaJugador.mostrarManoCrupierCompleta(crupier);
 
                 // Determinar ganador con el método del menú
                 string resultado = controlador.determinarGanador(jugador, crupier, monto);
@@ -109,15 +76,14 @@ int main() {
             }
         }
 
-        cout << "\n=== Tu saldo actual: $" << jugador.getSaldo() << " ===" << endl;
+        vistaJugador.mostrarSaldo(jugador.getSaldo());
 
         if (jugador.getSaldo() <= 0) {
             cout << "\n\nTe has quedado sin dinero. Fin del juego.\n";
             break;
         }
 
-        cout << "\n¿Desea jugar otra partida? (s/n): ";
-        cin >> opcion;
+        opcion = vistaJugador.confirmarDecision();
 
         if (opcion == 's' || opcion == 'S')
             cout << "\nReiniciando el juego...\n";

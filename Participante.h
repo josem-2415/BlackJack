@@ -31,11 +31,10 @@ protected:
     
 public:
     Participante ();
-    virtual ~Participante() = default;
     // Metodos
     int calcularValorMano() const;               // Valor total de la mano
     void pedirCarta(Mazo &mazo);                     // Toma una carta del mazo
-    virtual void mostrarMano() const;                           // Muestra cartas del participante
+    void mostrarMano() const;                           // Muestra cartas del participante
     void limpiarMano();                         // Limpia la mano del participante
 };
 #endif // CRUPIER_H

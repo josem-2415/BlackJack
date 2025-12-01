@@ -7,9 +7,15 @@ using namespace std;
 Controlador::Controlador(Jugador& j, Crupier& c, Mazo& m)
     : jugador(j), crupier(c), mazo(m) {}
 
+
 // Metodos
 void Controlador::iniciar(Crupier& crupier, Jugador& jugador){
     // Lógica para iniciar el juego
+    vista.bienvenida();
+    mazo.inicializarMazo();
+    jugador.limpiarMano();
+    crupier.limpiarMano();
+    
     cout << "Iniciando el juego de Blackjack..." << endl;
     mazo.barajar();
     crupier.repartirInicial(mazo, jugador);
