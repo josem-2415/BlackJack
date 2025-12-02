@@ -34,6 +34,7 @@ Creadores:
 #include "Mazo.h"
 #include "Apuesta.h"
 #include "Vista.h"
+#include "VistaParticipante.h"
 
 using namespace std;
 
@@ -53,7 +54,6 @@ public:
     void iniciar(Crupier& crupier, Jugador& jugador);                            // Inicia el juego
     string determinarGanador(Jugador& jugador, Crupier& crupier, double monto); // Determina el resultado
     void manejarApuesta(Jugador& jugador, string resultado); // Gestiona apuestas
-
-    //void nuevaPartida();                       // Reinicia el juego
+    void solicitarApuesta(VistaParticipante& vistaParticipante, Jugador& jugador, Crupier& crupier); // Solicita apuesta al jugador
 };
 #endif // MENUJUEGO_H

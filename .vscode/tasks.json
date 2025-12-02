@@ -9,7 +9,7 @@
                 "*.cpp",
                 "-g",
                 "-o",
-                "programa"
+                "Blackjack"
             ],
             "group": {
                 "kind": "build",

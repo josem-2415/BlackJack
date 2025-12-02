@@ -5,7 +5,7 @@
             "name": "Depurar programa C++",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/programa",
+            "program": "${workspaceFolder}/Blackjack",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

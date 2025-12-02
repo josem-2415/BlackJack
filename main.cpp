@@ -4,7 +4,7 @@
 #include "Mazo.h"
 #include "Controlador.h"
 #include "Vista.h"
-#include "VistaJugador.h"
+#include "VistaParticipante.h"
 using namespace std;
 
 int main() {
@@ -13,8 +13,7 @@ int main() {
     Mazo mazo;
     Controlador controlador(jugador, crupier, mazo);
     Vista vista;
-    VistaJugador vistaJugador;
-
+    VistaParticipante vistaParticipante;
     char opcion;
 
     do {
@@ -23,12 +22,11 @@ int main() {
         controlador.iniciar(crupier, jugador);
 
         // Solicitar apuesta al jugador
-        double monto = vistaJugador.solicitarMontoApuesta(jugador.getSaldo(), jugador);
-        vistaJugador.mostrarSaldo(jugador.getSaldo() - monto);
+        double monto = vistaParticipante.solicitarMontoApuesta(jugador.getSaldo(), jugador);
+        vistaParticipante.mostrarSaldo(jugador.getSaldo());
 
         // Mostrar manos iniciales
-        vistaJugador.mostrarManoJugador(jugador);
-        vistaJugador.mostrarManoCrupier(crupier);
+        controlador.solicitarApuesta(vistaParticipante, jugador, crupier);
 
         // Verificar si el jugador se pasa de 21
         if (jugador.calcularValorMano() > 21) {
@@ -43,10 +41,10 @@ int main() {
             // Turno del jugador
             char decision;
             do {
-                decision = vistaJugador.confirmarNuevaCarta();
+                decision = vistaParticipante.confirmarNuevaCarta();
                 if (decision == 's' || decision == 'S') {
                     jugador.pedirCarta(mazo);
-                    vistaJugador.mostrarManoJugador(jugador);
+                    vistaParticipante.mostrarManoJugador(jugador);
                 }
 
                 if (jugador.calcularValorMano() > 21) {
@@ -68,22 +66,22 @@ int main() {
                     crupier.pedirCarta(mazo);
                 }
 
-                vistaJugador.mostrarManoCrupierCompleta(crupier);
+                vistaParticipante.mostrarManoCrupierCompleta(crupier);
 
-                // Determinar ganador con el método del menú
+                // Determinar ganador
                 string resultado = controlador.determinarGanador(jugador, crupier, monto);
                 controlador.manejarApuesta(jugador, resultado);
             }
         }
 
-        vistaJugador.mostrarSaldo(jugador.getSaldo());
+        vistaParticipante.mostrarSaldo(jugador.getSaldo());
 
         if (jugador.getSaldo() <= 0) {
             cout << "\n\nTe has quedado sin dinero. Fin del juego.\n";
             break;
         }
 
-        opcion = vistaJugador.confirmarDecision();
+        opcion = vistaParticipante.confirmarDecision();
 
         if (opcion == 's' || opcion == 'S')
             cout << "\nReiniciando el juego...\n";

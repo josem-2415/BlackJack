@@ -1,5 +1,5 @@
-#ifndef VISTAJUGADOR_H
-#define VISTAJUGADOR_H
+#ifndef VISTAPARTICIPANTE_H
+#define VISTAPARTICIPANTE_H
 
 #include <iostream>
 #include <vector>
@@ -8,9 +8,9 @@
 
 using namespace std;
 
-class VistaJugador {
+class VistaParticipante {
 public:
-    VistaJugador();
+    VistaParticipante();
 
     void mostrarManoJugador(Jugador& jugador);
     void mostrarManoCrupier(Crupier& crupier);
@@ -20,4 +20,4 @@ public:
     char confirmarNuevaCarta();
     char confirmarDecision();
 };
-#endif // VISTAJUGADOR_H
+#endif // VISTAPARTICIPANTE_H

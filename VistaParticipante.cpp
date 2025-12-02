@@ -1,9 +1,9 @@
-#include "VistaJugador.h"
+#include "VistaParticipante.h"
 #include <iostream>
 
-VistaJugador::VistaJugador() {}
+VistaParticipante::VistaParticipante() {}
 
-void VistaJugador::mostrarManoJugador(Jugador& jugador) {
+void VistaParticipante::mostrarManoJugador(Jugador& jugador) {
     cout << "\n======================================="<< endl;
         cout << "Tus cartas:" << endl;
         jugador.mostrarMano();
@@ -11,14 +11,14 @@ void VistaJugador::mostrarManoJugador(Jugador& jugador) {
         cout << "=======================================\n\n";
 }
 
-void VistaJugador::mostrarManoCrupier(Crupier& crupier) {
+void VistaParticipante::mostrarManoCrupier(Crupier& crupier) {
     cout << "\n======================================="<< endl;
         cout << "Carta visible del crupier:" << endl;
         crupier.mostrarPrimeraCarta();
         cout << "=======================================\n";
 }
 
-double VistaJugador::solicitarMontoApuesta(double saldo, Jugador& jugador) {
+double VistaParticipante::solicitarMontoApuesta(double saldo, Jugador& jugador) {
     double monto;
     std::cout << "\nTu saldo actual es: $" << saldo << std::endl;
     std::cout << "Ingresa el monto que deseas apostar: $";
@@ -28,15 +28,16 @@ double VistaJugador::solicitarMontoApuesta(double saldo, Jugador& jugador) {
         std::cin >> monto;
     }
     jugador.realizarApuesta(monto);
+    jugador.actualizarSaldo("apostar", monto);
     return monto;
 }
 
-void VistaJugador::mostrarSaldo(double saldo) {
+void VistaParticipante::mostrarSaldo(double saldo) {
     std::cout << "Saldo restante despues de apostar: $" << saldo << std::endl;
     std::cout << "=======================================\n\n";
 }
 
-void VistaJugador::mostrarManoCrupierCompleta(Crupier& crupier) {
+void VistaParticipante::mostrarManoCrupierCompleta(Crupier& crupier) {
     cout << "\n======================================="<< endl;
         cout << "Mano completa del crupier:" << endl;
         crupier.mostrarMano();
@@ -44,14 +45,14 @@ void VistaJugador::mostrarManoCrupierCompleta(Crupier& crupier) {
         cout << "=======================================\n\n";
 }
 
-char VistaJugador::confirmarNuevaCarta() {
+char VistaParticipante::confirmarNuevaCarta() {
     char decision;
     std::cout << "¿Deseas pedir otra carta? (s/n): ";
     std::cin >> decision;
     return decision;
 }
 
-char VistaJugador::confirmarDecision() {
+char VistaParticipante::confirmarDecision() {
     char decision;
     std::cout << "¿Deseas continuar jugando? (s/n): ";
     std::cin >> decision;

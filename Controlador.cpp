@@ -15,7 +15,7 @@ void Controlador::iniciar(Crupier& crupier, Jugador& jugador){
     mazo.inicializarMazo();
     jugador.limpiarMano();
     crupier.limpiarMano();
-    
+
     cout << "Iniciando el juego de Blackjack..." << endl;
     mazo.barajar();
     crupier.repartirInicial(mazo, jugador);
@@ -51,12 +51,7 @@ void Controlador::manejarApuesta(Jugador& jugador, string resultado){
     jugador.actualizarSaldo(resultado, apuestaActual.getMonto());
 }
 
-/*void Controlador::nuevaPartida(){
-    // Lógica para reiniciar el juego
-    cout << "Reiniciando el juego para una nueva partida..." << endl;
-    jugador = Jugador();        //Reinicuar jugador
-    crupier = Crupier();        //Reiniciar crupier  
-    mazo = Mazo();       // Reiniciar mazo
-    apuestaActual.reiniciar(); // Reiniciar apuesta
-    iniciar(crupier, jugador);           // Iniciar nueva partida
-}*/
+void Controlador::solicitarApuesta(VistaParticipante& vistaParticipante, Jugador& jugador, Crupier& crupier){
+    vistaParticipante.mostrarManoJugador(jugador);
+    vistaParticipante.mostrarManoCrupier(crupier);
+}
