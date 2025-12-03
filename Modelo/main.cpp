@@ -2,9 +2,9 @@
 #include "Jugador.h"
 #include "Crupier.h"
 #include "Mazo.h"
-#include "Controlador.h"
-#include "Vista.h"
-#include "VistaParticipante.h"
+#include "../Controlador/Controlador.h"
+#include "../Vista/Vista.h"
+#include "../Vista/VistaParticipante.h"
 using namespace std;
 
 int main() {

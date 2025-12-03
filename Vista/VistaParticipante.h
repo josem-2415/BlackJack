@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include "Jugador.h"
-#include "Crupier.h"
+#include "../Modelo/Jugador.h"
+#include "../Modelo/Crupier.h"
 
 using namespace std;
 

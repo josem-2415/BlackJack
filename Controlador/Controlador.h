@@ -4,7 +4,7 @@
 ===============================================================================
 
 Clase:
-    MenuJuego
+    Controlador
 
 Responsabilidades:
     - Controlar la interacción general del juego.
@@ -28,13 +28,13 @@ Creadores:
 
 #ifndef MENUJUEGO_H
 #define MENUJUEGO_H
-#include "Jugador.h"
-#include "Crupier.h"
-#include "Participante.h"
-#include "Mazo.h"
-#include "Apuesta.h"
-#include "Vista.h"
-#include "VistaParticipante.h"
+#include "../Modelo/Jugador.h"
+#include "../Modelo/Crupier.h"
+#include "../Modelo/Participante.h"
+#include "../Modelo/Mazo.h"
+#include "../Modelo/Apuesta.h"
+#include "../Vista/Vista.h"
+#include "../Vista/VistaParticipante.h"
 
 using namespace std;
 
